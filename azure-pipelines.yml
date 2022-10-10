@@ -1,10 +1,4 @@
 # Python package
-- task: AzureWebApp@1
-  inputs:
-    appType: 'webApp'
-    appName: 'test-malika'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    deploymentMethod: 'auto'
 # Create and test a Python package on multiple Python versions.
 # Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
@@ -28,6 +22,14 @@ steps:
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
+
+- task: AzureWebApp@1
+  inputs:
+    appType: 'webApp'
+    appName: 'test-malika'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
+    azureSubscription: '4161aa11-0b4c-40c9-8baf-76ec84b78656'
 
 - script: |
     python -m pip install --upgrade pip

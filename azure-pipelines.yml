@@ -22,14 +22,13 @@ steps:
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
-
-- task: AzureWebApp@1
+- task: AzureRmWebAppDeployment@4
   inputs:
-    appType: 'webApp'
-    appName: 'test-malika'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
-    deploymentMethod: 'auto'
-    azureSubscription: '4161aa11-0b4c-40c9-8baf-76ec84b78656'
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'test-malika'
+    appType: 'webAppLinux'
+    WebAppName: 'test-malika'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 - script: |
     python -m pip install --upgrade pip

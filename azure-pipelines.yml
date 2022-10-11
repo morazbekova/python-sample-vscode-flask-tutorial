@@ -12,23 +12,12 @@ strategy:
   matrix:
     Python35:
       python.version: '3.5'
-    Python36:
-      python.version: '3.6'
-    Python37:
-      python.version: '3.7'
 
 steps:
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'test-malika'
-    appType: 'webAppLinux'
-    WebAppName: 'test-malika'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
 - script: |
     python -m pip install --upgrade pip
